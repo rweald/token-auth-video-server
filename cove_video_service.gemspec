@@ -28,5 +28,6 @@ Gem::Specification.new do |s|
   s.add_dependency "yajl-ruby"
   s.add_dependency "redis"
   s.add_dependency "redis-namespace"
+  s.add_dependency "rest-client"
 
 end
