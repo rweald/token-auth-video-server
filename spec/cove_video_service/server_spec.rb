@@ -25,7 +25,9 @@ describe CoveVideoService do
       end
 
       it "shoud return a token if valid video param given" do
-        parse_json_response { get "/generate_token", :video => "test.webm"}
+        parse_json_response do
+          get "/generate_token", :video => "test.webm"
+        end
         @response["token"].should be
       end
       

@@ -2,6 +2,7 @@ require 'redis'
 require 'redis-namespace'
 require 'sinatra/base'
 require 'yajl/json_gem'
+require 'openssl'
 
 class VideoService < Sinatra::Base
   enable :logging
