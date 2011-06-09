@@ -4,9 +4,10 @@ require 'rest-client'
 module TAVideoServer
   class Client
     class << self
-      attr_accessor :host
+      attr_accessor :url_host, :token_host
     end
-    @host = "http://127.0.0.1:5678"
+    @url_host = "http://127.0.0.1:4250"
+    @token_host = "http://127.0.0.1:4250"
 
     def self.generate_url(video_name)
       format = video_name.split(".")[1] || "webm"
@@ -16,14 +17,14 @@ module TAVideoServer
         puts "token request failed or timedout"
         token = "nil"
       end     
-      @host + "/videos/" + "#{token}.#{format}"
+      @url_host + "/videos/" + "#{token}.#{format}"
     end
 
     def self.request_token(video_name)
       puts "begining token request"
 
-      url = @host + "/generate_token" + "?video=#{video_name}"
-      resp = Restclient::Request.execute(:method => :get, :url => url, :timeout => 0.75)
+      url = @token_host + "/generate_token" + "?video=#{video_name}"
+      resp = Restclient::Request.execute(:method => :get, :url => url, :timeout => 1.5)
       resp = JSON.parse(resp.body)
 
       puts "token request succeeded"
