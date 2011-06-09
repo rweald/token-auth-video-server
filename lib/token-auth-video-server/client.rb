@@ -13,8 +13,9 @@ module TAVideoServer
       format = video_name.split(".")[1] || "webm"
       begin
         token = self.request_token(video_name, timeout)
-      rescue
-        puts "token request failed or timedout"
+      rescue => e
+        puts "token request failed or timed out"
+        puts "Reason for failure was #{e}"
         token = "nil"
       end     
       @url_host + "/videos/" + "#{token}.#{format}"
@@ -24,7 +25,7 @@ module TAVideoServer
       puts "begining token request"
 
       url = @token_host + "/generate_token" + "?video=#{video_name}"
-      resp = Restclient::Request.execute(:method => :get, :url => url, :timeout => timeout)
+      resp = RestClient::Request.execute(:method => :get, :url => url, :timeout => timeout)
       resp = JSON.parse(resp.body)
 
       puts "token request succeeded"
