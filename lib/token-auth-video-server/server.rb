@@ -4,7 +4,7 @@ require 'sinatra/base'
 require 'yajl/json_gem'
 require 'openssl'
 
-class VideoService < Sinatra::Base
+class VideoServer < Sinatra::Base
   enable :logging
   DB = Redis::Namespace.new "video_service", :redis => Redis.new
   set :root, ENV['VIDEO_SERVICE_ROOT'] ||= Dir.pwd
