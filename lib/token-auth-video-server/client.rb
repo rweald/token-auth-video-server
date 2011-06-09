@@ -21,9 +21,11 @@ module TAVideoServer
 
     def self.request_token(video_name)
       puts "begining token request"
+
       url = @host + "/generate_token" + "?video=#{video_name}"
       resp = Restclient::Request.execute(:method => :get, :url => url, :timeout => 0.75)
       resp = JSON.parse(resp.body)
+
       puts "token request succeeded"
       resp["token"]
     end
