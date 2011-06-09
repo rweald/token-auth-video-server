@@ -20,13 +20,13 @@ describe CoveVideoService do
       end
 
       it "should return 200 if valid video given" do
-        get '/generate_token', :video => "test.webm"
+        get '/generate_token', :video => "test.m4v"
         last_response.status.should == 200
       end
 
       it "shoud return a token if valid video param given" do
         parse_json_response do
-          get "/generate_token", :video => "test.webm"
+          get "/generate_token", :video => "test.m4v"
         end
         @response["token"].should be
       end
@@ -40,13 +40,13 @@ describe CoveVideoService do
       end
       
       it "should return 403 if not valid token" do
-        get '/videos/adljfs'
+        get '/videos/adljfs.webm'
         last_response.status.should == 403
       end
 
       it 'should return 200 if token is valid' do
         token = get_token("test.webm")
-        get "/videos/#{token}"
+        get "/videos/#{token}.webm"
         last_response.status.should == 200
       end
     end

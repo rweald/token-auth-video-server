@@ -7,6 +7,7 @@ require "mocha"
 require "cove_video_service"
 
 ENV['RACK_ENV'] = 'test'
+ENV["VIDEO_SERVICE_ROOT"] = File.expand_path("../")
 
 RSpec.configure do |config|
   config.mock_with :mocha

@@ -7,6 +7,7 @@ require 'openssl'
 class VideoService < Sinatra::Base
   enable :logging
   DB = Redis::Namespace.new "video_service", :redis => Redis.new
+  set :root, ENV['VIDEO_SERVICE_ROOT'] ||= Dir.pwd
 
   # Method that will return a token for the given video
   # requires the name or identifier of the video in the parameter
@@ -26,14 +27,12 @@ class VideoService < Sinatra::Base
   # Require both token and video as parameters
   # E.X// '/<token>/<filename>.<extension>
   get '/videos/:token.:extension' do
+    debugger
     unless video_name = valid_token(params[:token])
       response.status = 403
       return {"status" => "failed", "notice" => "Invalid token"}.to_json
     end
-    puts video_name
-    puts Dir.pwd
-    puts File.join(Dir.pwd, "videos", video_name)
-    send_file File.join(Dir.pwd, "videos", video_name)
+    send_file File.join(settings.root, "videos", video_name)
   end
 
 

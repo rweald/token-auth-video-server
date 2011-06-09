@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rspec"
   s.add_development_dependency "mocha"
   s.add_development_dependency "rack-test"
+  s.add_development_dependency "ruby-debug19"
 
   s.add_dependency "thin"
   s.add_dependency "sinatra"
