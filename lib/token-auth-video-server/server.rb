@@ -19,7 +19,8 @@ class VideoServer < Sinatra::Base
       content_type :json
       return {"status" => "failed", "notice" => "No video specified you must specify a video"}.to_json
     end
-    token = generate_token(params[:video])
+    video_name = params[:video].gsub(/\.\w*/, "")
+    token = generate_token(video_name)
     {"status" => "success", 'token' => token}.to_json
   end
 
@@ -31,7 +32,7 @@ class VideoServer < Sinatra::Base
       response.status = 403
       return {"status" => "failed", "notice" => "Invalid token"}.to_json
     end
-    send_file File.join(settings.root, "videos", video_name)
+    send_file File.join(settings.root, "videos", "#{video_name}.#{params[:extension]}")
   end
 
 
