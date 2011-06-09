@@ -5,6 +5,6 @@ $LOAD_PATH.unshift File.expand_path(File.dirname(__FILE__) + '/../lib')
 require 'vegas'
 require "token-auth-video-server/server"
 
-Vegas::Runner.new(VideoServer, 'video_server', :skip_launch => true, :foreground => true)
+Vegas::Runner.new(VideoServer, 'video_server', :skip_launch => true, :foreground => true, :port => 4250)
 
 
