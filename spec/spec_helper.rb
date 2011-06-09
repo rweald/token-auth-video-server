@@ -8,7 +8,13 @@ require "cove_video_service"
 
 ENV['RACK_ENV'] = 'test'
 
-Rspec.configure do |config|
+RSpec.configure do |config|
   config.mock_with :mocha
   config.include Rack::Test::Methods
 end
+
+def parse_json_response(&block)
+  resp = yield
+  @response = JSON.parse(resp.body)
+end
+
