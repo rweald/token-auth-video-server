@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe CoveVideoService do
+describe TAVideoServer do
   describe VideoService do
     def app
       VideoService

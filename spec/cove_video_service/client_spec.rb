@@ -1,8 +1,8 @@
 require 'spec_helper'
-require 'cove_video_service/client'
+require 'token-auth-video-server/client'
 
-describe CoveVideoService::Client do
-  include CoveVideoService
+describe TAVideoServer::Client do
+  include TAVideoServer
 
   describe ".generate_url" do
     it "should return an invalid video url if request timeout" do

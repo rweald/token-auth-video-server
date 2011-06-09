@@ -4,7 +4,7 @@ Bundler.setup
 require "rack/test"
 require "rspec"
 require "mocha"
-require "cove_video_service"
+require "token-auth-video-server"
 
 ENV['RACK_ENV'] = 'test'
 ENV["VIDEO_SERVICE_ROOT"] = File.expand_path("../")

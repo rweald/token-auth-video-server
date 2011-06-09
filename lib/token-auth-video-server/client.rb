@@ -1,7 +1,7 @@
 require 'yajl/json_gem'
 require 'rest-client'
 
-module CoveVideoService
+module TAVideoServer
   class Client
     class << self
       attr_accessor :host
