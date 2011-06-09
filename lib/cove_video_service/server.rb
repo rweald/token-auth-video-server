@@ -11,7 +11,7 @@ class VideoService < Sinatra::Base
   # Method that will return a token for the given video
   # requires the name or identifier of the video in the parameter
   # video
-  # E.X// '/token?video=demo.webm'
+  # E.X// '/token?video=demo.m4v'
   get '/generate_token' do
     unless params[:video]
       response.status = 400
@@ -25,13 +25,17 @@ class VideoService < Sinatra::Base
   # Executes a sendfile with the video if the given token is valid.
   # Require both token and video as parameters
   # E.X// '/<token>/<filename>.<extension>
-  get '/:token' do
+  get '/videos/:token.:extension' do
     unless video_name = valid_token(params[:token])
       response.status = 403
       return {"status" => "failed", "notice" => "Invalid token"}.to_json
     end
+    puts video_name
+    puts Dir.pwd
+    puts File.join(Dir.pwd, "videos", video_name)
     send_file File.join(Dir.pwd, "videos", video_name)
   end
+
 
   # Generate the secure random token and store it in the db 
   # so we can check for token validity later. 
