@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe TAVideoServer do
-  describe VideoService do
+  describe VideoServer do
     def app
-      VideoService
+      VideoServer
     end
 
     describe "GET 'generate_token'" do
