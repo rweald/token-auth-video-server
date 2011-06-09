@@ -30,7 +30,24 @@ describe CoveVideoService do
         end
         @response["token"].should be
       end
+    end
+
+    describe "get '/:token'" do
+      def get_token(name)
+        resp = get '/generate_token', :video => name
+        resp = JSON.parse(resp.body)
+        resp["token"]
+      end
       
+      it "should return 403 if not valid token" do
+        get '/adljfs'
+        last_response.status.should == 403
+      end
+
+      it 'should return 200 if token is valid' do
+        token = get_token("test.webm")
+        last_response.status.should == 200
+      end
     end
   end
 end
