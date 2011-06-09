@@ -27,7 +27,6 @@ class VideoService < Sinatra::Base
   # Require both token and video as parameters
   # E.X// '/<token>/<filename>.<extension>
   get '/videos/:token.:extension' do
-    debugger
     unless video_name = valid_token(params[:token])
       response.status = 403
       return {"status" => "failed", "notice" => "Invalid token"}.to_json
